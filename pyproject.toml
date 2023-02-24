@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "fastapi-cli-tool"
+version = "0.1.0"
+description = ""
+authors = ["ChrisBran0815 <72992408+ChrisBran0815@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "fastapi_cli_tool"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+commitizen = "^2.42.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
