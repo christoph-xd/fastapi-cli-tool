@@ -1,17 +1,18 @@
 [tool.poetry]
 name = "fastapi-cli-tool"
-version = "0.1.0"
+version = "0.0.2"
 description = ""
-authors = ["ChrisBran0815 <72992408+ChrisBran0815@users.noreply.github.com>"]
+authors = ["Christoph-xd <cbsk.tech.de>"]
 readme = "README.md"
 packages = [{include = "fastapi_cli_tool"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-typer = "^0.7.0"
+typer = {extras = ["all"], version = "^0.7.0"}
 cookiecutter = "^2.1.1"
 questionary = "^1.10.0"
 pydantic = {extras = ["email"], version = "^1.10.5"}
+requests = "^2.28.2"
 
 [tool.poetry.scripts]
 fastapi-cli = "fastapi_cli_tool.main:app"
