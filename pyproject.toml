@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "fastapi-cli-tool"
-version = "0.0.7"
-description = ""
+version = "0.0.8"
+description = "A CLI Tool to Create and Manage FastAPI Apps"
 authors = ["Christoph-xd <cbsk.tech@gmail.de>"]
 license = "MIT"
 readme = "README.md"

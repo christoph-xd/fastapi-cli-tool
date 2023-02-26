@@ -56,6 +56,7 @@ class ProjectContext(BaseModel):
     python_jose: str
     fastapi_cli_tool: str
     pytest_cov: str
+    httpx: str
 
     orm_version: str = "*"
 

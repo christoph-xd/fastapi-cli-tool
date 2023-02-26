@@ -23,6 +23,7 @@
   "uvicorn": "{{ cookiecutter.uvicorn }}",
   "python_jose": "{{ cookiecutter.python_jose }}",
   "pytest_cov": "{{ cookiecutter.pytest_cov }}",
+  "httpx": "{{ cookiecutter.httpx }}",
   "database_orm": "{{ cookiecutter.database_orm }}",
   "orm_version": "{{ cookiecutter.orm_version }}",
   "fastapi_cli_tool": "{{ cookiecutter.fastapi_cli_tool }}",

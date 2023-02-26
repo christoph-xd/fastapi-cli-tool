@@ -21,6 +21,7 @@ python-jose = "^{{ cookiecutter.python_jose }}"
 [tool.poetry.dev-dependencies]
 pytest = "^{{ cookiecutter.pytest }}"
 pytest-cov = "^{{ cookiecutter.pytest_cov }}"
+httpx = "^{{ cookiecutter.httpx }}"
 {% if cookiecutter.use_code_formatter == "True" %}
 black = "^23.1.0"
 isort = "^5.12.0"

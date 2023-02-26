@@ -48,6 +48,7 @@ def startproject(name: str):
             "pytest_cov": get_package_version("pytest-cov"),
             "black": get_package_version("black"),
             "isort": get_package_version("isort"),
+            "httpx": get_package_version("httpx"),
         }
         results = {**results, **packeage_version}
         context = ProjectContext(name=name, **results)
