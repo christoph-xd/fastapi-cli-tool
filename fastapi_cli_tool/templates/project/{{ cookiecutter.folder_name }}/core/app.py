@@ -1,8 +1,8 @@
 from backend.middleware import include_middleware
+from backend.register_db import init_db
 from backend.settings import settings
 from backend.urls import include_router
 from fastapi import FastAPI
-from backend.register_db import init_db
 
 
 def start_application():

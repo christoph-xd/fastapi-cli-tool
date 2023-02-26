@@ -25,6 +25,7 @@
   "pytest_cov": "{{ cookiecutter.pytest_cov }}",
   "database_orm": "{{ cookiecutter.database_orm }}",
   "orm_version": "{{ cookiecutter.orm_version }}",
+  "fastapi_cli_tool": "{{ cookiecutter.fastapi_cli_tool }}",
   "black": "{{ cookiecutter.black }}",
   "isort": "{{ cookiecutter.isort }}"
 }

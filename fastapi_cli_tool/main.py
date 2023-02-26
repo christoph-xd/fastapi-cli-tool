@@ -1,6 +1,5 @@
 import os
 import subprocess
-from typing import Optional
 
 import pkg_resources
 import typer
@@ -8,19 +7,19 @@ from questionary.form import form
 
 from fastapi_cli_tool.constants import (
     Database,
+    DatabaseORM,
     License,
     PackageManager,
     PythonVersion,
-    DatabaseORM,
 )
 from fastapi_cli_tool.context import AppContext, ProjectContext
 from fastapi_cli_tool.generator import generate_app, generate_project
-from fastapi_cli_tool.helpers import binary_question, question, question_input
+from fastapi_cli_tool.helpers import binary_question, get_package_version, question
 
 app = typer.Typer(
     add_completion=False,
-    help="Managing FastAPI projects made easy!",
-    name="Manage FastAPI",
+    help="Create FastApi Projects and Apps!",
+    name="fastapi-cli-tool",
 )
 
 
@@ -28,13 +27,29 @@ app = typer.Typer(
 def startproject(name: str):
     try:
         results = form(
-            packaging=question(PackageManager),
-            python=question(PythonVersion),
-            license=question(License),
-            database=question(Database),
-            database_orm=question(DatabaseORM),
+            packaging=question("Select a Package Manger:", PackageManager),
+            python=question("Select a Python Version:", PythonVersion),
+            license=question("Select a License:", License),
+            database=question("Select a Database:", Database),
+            database_orm=question("Select a Database ORM:", DatabaseORM),
             use_code_formatter=binary_question("use code formatter:"),
         ).ask()
+        packeage_version = {
+            "fastapi": get_package_version("fastapi"),
+            "pytest": get_package_version("pytest"),
+            "tzdata": get_package_version("tzdata"),
+            "pytz": get_package_version("pytz"),
+            "fastapi_mail": get_package_version("fastapi-mail"),
+            "passlib": get_package_version("passlib"),
+            "asgiref": get_package_version("asgiref"),
+            "uvicorn": get_package_version("uvicorn"),
+            "python_jose": get_package_version("python-jose"),
+            "fastapi_cli_tool": get_package_version("fastapi-cli-tool"),
+            "pytest_cov": get_package_version("pytest-cov"),
+            "black": get_package_version("black"),
+            "isort": get_package_version("isort"),
+        }
+        results = {**results, **packeage_version}
         context = ProjectContext(name=name, **results)
         generate_project(context)
     except Exception as e:
@@ -42,28 +57,32 @@ def startproject(name: str):
 
 
 @app.command(help="Creates a FastAPI component.")
-def startapp():
+def startapp(name: str):
     if os.path.exists(os.path.join(os.getcwd(), "manage.py")):
-        result = form(name=question_input("Choose a name")).ask()
-        context = AppContext(**result)
+        context = AppContext(name=name)
         generate_app(context)
     else:
         typer.echo(f"No FastApi Project Found! ❌")
 
 
 @app.command(help="Run a FastAPI application.")
-def run(prod: bool = typer.Option(False)):
+def runserver(
+    reload: bool = typer.Option(False, "--reload"),
+    port: int = typer.Option(8000, "--port", case_sensitive=False),
+):
     args = []
-    if not prod:
+    if reload:
         args.append("--reload")
+    args.append(f"--port")
+    args.append(str(port))
     app_file = os.getenv("FASTAPI_APP", "core.app")
     subprocess.call(["uvicorn", f"{app_file}:app", *args])
 
 
 def version_callback(value: bool):
     if value:
-        version = pkg_resources.get_distribution("fastapi-cli").version
-        typer.echo(f"fastapi-cli, version {version}")
+        version = pkg_resources.get_distribution("fastapi-cli-tool").version
+        typer.echo(f"Version {version}")
         raise typer.Exit()
 
 
@@ -74,7 +93,7 @@ def main(
         "--version",
         callback=version_callback,
         is_eager=True,
-        help="Show the Manage FastAPI version information.",
+        help="Show the FastAPI CLI Tool Version.",
     )
 ):
     ...

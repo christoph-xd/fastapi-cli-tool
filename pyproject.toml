@@ -1,13 +1,15 @@
 [tool.poetry]
 name = "fastapi-cli-tool"
-version = "0.0.2"
+version = "0.0.7"
 description = ""
-authors = ["Christoph-xd <cbsk.tech.de>"]
+authors = ["Christoph-xd <cbsk.tech@gmail.de>"]
+license = "MIT"
 readme = "README.md"
+keywords = ["FastAPI", "CLI Tool", "Python", "Backend"]
 packages = [{include = "fastapi_cli_tool"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.8"
 typer = {extras = ["all"], version = "^0.7.0"}
 cookiecutter = "^2.1.1"
 questionary = "^1.10.0"
@@ -21,6 +23,11 @@ fastapi-cli = "fastapi_cli_tool.main:app"
 commitizen = "^2.42.0"
 black = "^23.1.0"
 isort = "^5.12.0"
+
+[tool.black]
+extend-exclude = '''
+/templates
+'''
 
 [build-system]
 requires = ["poetry-core"]

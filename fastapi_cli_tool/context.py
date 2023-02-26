@@ -6,10 +6,10 @@ from pydantic import BaseModel, EmailStr, root_validator
 
 from fastapi_cli_tool.constants import (
     Database,
+    DatabaseORM,
     License,
     PackageManager,
     PythonVersion,
-    DatabaseORM,
 )
 from fastapi_cli_tool.helpers import get_package_version
 
@@ -45,23 +45,24 @@ class ProjectContext(BaseModel):
     database: Optional[Database] = None
     database_orm: DatabaseORM
 
-    fastapi: str = get_package_version("fastapi")
-    pytest: str = get_package_version("pytest")
-    tzdata: str = get_package_version("tzdata")
-    pytz: str = get_package_version("pytz")
-    fastapi_mail: str = get_package_version("fastapi-mail")
-    passlib: str = get_package_version("passlib")
-    asgiref: str = get_package_version("asgiref")
-    uvicorn: str = get_package_version("uvicorn")
-    python_jose: str = get_package_version("python-jose")
-    pytest_cov: str = get_package_version("pytest-cov")
+    fastapi: str
+    pytest: str
+    tzdata: str
+    pytz: str
+    fastapi_mail: str
+    passlib: str
+    asgiref: str
+    uvicorn: str
+    python_jose: str
+    fastapi_cli_tool: str
+    pytest_cov: str
 
     orm_version: str = "*"
 
     use_code_formatter: bool = False
 
-    black: str = get_package_version("black")
-    isort: str = get_package_version("isort")
+    black: str
+    isort: str
 
     @root_validator()
     def validate_orm(cls, values: dict):

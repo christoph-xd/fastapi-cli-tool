@@ -8,7 +8,8 @@ class Seetings(BaseConfig):
     # "sha256_crypt", "md5_crypt", "bcrypt", "pbkdf2_sha256","pbkdf2_sha512"
     PASSWORD_HASHER = "bcrypt"
 
-    DATABASE_URL = ""
+    # Change the Database URL to your used DB
+    DATABASE_URL = "sqlite:///db.sqlite"
     {% if cookiecutter.database_orm == "TortoiseORM" %}
     APP_MODELS = []
     {% endif %}

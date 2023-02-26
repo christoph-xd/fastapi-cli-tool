@@ -20,7 +20,7 @@ def fill_template(template_name: str, context: ContextType):
             no_input=True,
         )
     except OutputDirExistsException:
-        typer.echo(f"Folder '{context.folder_name}' already exists. 😞")
+        typer.echo(f"Folder '{context.folder_name}' already exists. ❌")
     else:
         typer.echo()
         typer.echo(f"FastAPI {template_name} created successfully! 🎉")
@@ -29,7 +29,14 @@ def fill_template(template_name: str, context: ContextType):
             typer.echo(
                 typer.style(f"   cd {context.folder_name}", fg=typer.colors.GREEN)
             )
-            typer.echo(typer.style(f"   poetry install", fg=typer.colors.GREEN))
+            if context.packaging == "poetry":
+                typer.echo(typer.style(f"   poetry install", fg=typer.colors.GREEN))
+            if context.packaging == "pip":
+                typer.echo(
+                    typer.style(
+                        f"   pip install -r requirements.txt", fg=typer.colors.GREEN
+                    )
+                )
             typer.echo()
 
 

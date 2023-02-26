@@ -6,6 +6,7 @@ description = ""
 
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python }}"
+fastapi-cli-tool = "^{{ cookiecutter.fastapi_cli_tool }}"
 fastapi = "^{{ cookiecutter.fastapi }}"
 tzdata = "^{{ cookiecutter.tzdata }}"
 pytz = "^{{ cookiecutter.pytz }}"

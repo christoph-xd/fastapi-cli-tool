@@ -1,9 +1,9 @@
 import re
 from typing import TypeVar
-import requests
-import typer
 
 import questionary
+import requests
+import typer
 
 EnumType = TypeVar("EnumType")
 
@@ -12,9 +12,9 @@ def camel_to_snake(text: str) -> str:
     return re.sub(r"(?<!^)(?=[A-Z])", "_", text).lower()
 
 
-def question(choices: EnumType) -> questionary.Question:
+def question(question: str, choices: EnumType) -> questionary.Question:
     prompt = camel_to_snake(choices.__name__).replace("_", " ")  # type: ignore
-    return questionary.select(f"Select the {prompt}: ", choices=list(choices))
+    return questionary.select(question, choices=list(choices))
 
 
 def question_input(text: str) -> questionary.Question:

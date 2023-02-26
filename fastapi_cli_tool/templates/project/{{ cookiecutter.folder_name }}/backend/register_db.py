@@ -1,4 +1,4 @@
-{% if cookiecutter.database_orm == "TortoiseORM" %}from backend.config import settings
+{% if cookiecutter.database_orm == "TortoiseORM" %}from backend.settings import settings
 from fastapi import FastAPI
 from tortoise import Tortoise
 from tortoise.contrib.fastapi import register_tortoise
@@ -16,10 +16,10 @@ def init_db(app: FastAPI):
 
 Tortoise.init_models(settings.APP_MODELS, "models") {% endif %}
 {% if cookiecutter.database_orm == "SQLAlchemy" %}from typing import Generator, Any
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import as_declarative, declared_attr
 from backend.config import settings
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import as_declarative, declared_attr
+from sqlalchemy.orm import sessionmaker
 
 SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
 

@@ -1,14 +1,7 @@
+from backend.settings import settings
 from fastapi import APIRouter
-
-
-from core.config import settings
-from {{ cookiecutter.snake_name }} import (
-    routes_delete,
-    routes_get,
-    routes_patch,
-    routes_post,
-    routes_put,
-)
+from {{cookiecutter.snake_name}}.api import (routes_delete, routes_get,
+                                         routes_patch, routes_post, routes_put)
 
 {{ cookiecutter.snake_name }}_router = APIRouter()
 
