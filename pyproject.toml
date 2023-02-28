@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastapi-cli-tool"
-version = "0.0.9"
+version = "0.0.11"
 description = "A CLI Tool to Create and Manage FastAPI Apps"
 authors = ["Christoph-xd <cbsk.tech@gmail.de>"]
 license = "MIT"
@@ -38,7 +38,7 @@ testpaths = [
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.0.9"
+version = "0.0.11"
 tag_format = "$version"
 version_files = [
     "fastapi_cli_tool/__init__.py:__version__",
