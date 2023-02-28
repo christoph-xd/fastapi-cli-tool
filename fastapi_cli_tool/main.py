@@ -34,6 +34,8 @@ def startproject(name: str):
             database_orm=question("Select a Database ORM:", DatabaseORM),
             use_code_formatter=binary_question("use code formatter:"),
         ).ask()
+        if os.path.join(os.getcwd(), name.lower().replace(" ", "-").strip()):
+            typer.echo(f"Project '{name}' already exists. ❌")
         packeage_version = {
             "fastapi": get_package_version("fastapi"),
             "pytest": get_package_version("pytest"),

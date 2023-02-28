@@ -20,7 +20,7 @@ def fill_template(template_name: str, context: ContextType):
             no_input=True,
         )
     except OutputDirExistsException:
-        typer.echo(f"App '{context.folder_name}' already exists. ❌")
+        typer.echo(f"{template_name} '{context.folder_name}' already exists. ❌")
     else:
         typer.echo()
         typer.echo(f"FastAPI {template_name} created successfully! 🎉")
