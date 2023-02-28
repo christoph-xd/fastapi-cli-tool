@@ -7,6 +7,7 @@ repos:
 repos:
 - hooks:
   - id: commitizen
+    stages: [commit-msg]
   - id: commitizen-branch
     stages:
     - push
