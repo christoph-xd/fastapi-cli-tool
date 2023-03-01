@@ -47,6 +47,7 @@ class License(BaseEnum):
 class Database(BaseEnum):
     POSTGRES = "Postgres"
     MYSQL = "MySQL"
+    SQLITE = "SQLite"
 
     def __str__(self) -> str:
         return self.value
@@ -55,7 +56,7 @@ class Database(BaseEnum):
 class DatabaseORM(BaseEnum):
     TORTOISE = "TortoiseORM"
     SQLALCHEMY = "SQLAlchemy"
-    SQLITE = "SQLite"
+    
 
     def __str__(self) -> str:
         return self.value
