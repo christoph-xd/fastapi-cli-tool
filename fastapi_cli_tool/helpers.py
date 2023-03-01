@@ -30,8 +30,8 @@ def question(question: str, choices: EnumType) -> questionary.Question:
     return questionary.select(question, choices=list(choices), style=custom_style_fancy)
 
 
-def question_input(text: str) -> questionary.Question:
-    return questionary.text(text)
+def question_input(text: str, default:str="") -> questionary.Question:
+    return questionary.text(text, default=default)
 
 
 def binary_question(option: str) -> questionary.Question:

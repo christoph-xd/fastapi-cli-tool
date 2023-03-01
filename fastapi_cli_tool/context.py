@@ -30,6 +30,7 @@ class ProjectContext(BaseModel):
     name: str
     folder_name: str
     packaging: PackageManager
+    version: str
 
     username: Optional[str] = None
     email: Optional[EmailStr] = None

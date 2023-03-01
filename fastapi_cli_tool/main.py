@@ -14,7 +14,7 @@ from fastapi_cli_tool.constants import (
 )
 from fastapi_cli_tool.context import AppContext, ProjectContext
 from fastapi_cli_tool.generator import generate_app, generate_project
-from fastapi_cli_tool.helpers import binary_question, get_package_version, question
+from fastapi_cli_tool.helpers import binary_question, get_package_version, question, question_input
 
 app = typer.Typer(
     add_completion=False,
@@ -29,6 +29,7 @@ def startproject(name: str):
         results = form(
             packaging=question("Select a Package Manger:", PackageManager),
             python=question("Select a Python Version:", PythonVersion),
+            version=question_input("Version of the Project:",default="0.0.1"),
             license=question("Select a License:", License),
             database=question("Select a Database:", Database),
             database_orm=question("Select a Database ORM:", DatabaseORM),

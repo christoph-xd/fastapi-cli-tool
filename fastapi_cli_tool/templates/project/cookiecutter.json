@@ -2,6 +2,7 @@
   "database": "{{ cookiecutter.database }}",
   "docker": "{{ cookiecutter.docker }}",
   "email": "{{ cookiecutter.email }}",
+  "version":"{{ cookiecutter.version }}",
   "env": ".env",
   "use_code_formatter": "{{ cookiecutter.use_code_formatter }}",
   "fastapi": "{{ cookiecutter.fastapi }}",
