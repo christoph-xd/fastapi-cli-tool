@@ -1,6 +1,6 @@
 import os
 import subprocess
-
+import sys
 import pkg_resources
 import typer
 from questionary.form import form
@@ -14,7 +14,12 @@ from fastapi_cli_tool.constants import (
 )
 from fastapi_cli_tool.context import AppContext, ProjectContext
 from fastapi_cli_tool.generator import generate_app, generate_project
-from fastapi_cli_tool.helpers import binary_question, get_package_version, question, question_input
+from fastapi_cli_tool.helpers import (
+    binary_question,
+    get_package_version,
+    question,
+    question_input,
+)
 
 app = typer.Typer(
     add_completion=False,
@@ -25,19 +30,23 @@ app = typer.Typer(
 
 @app.command(help="Creates a FastAPI project.")
 def startproject(name: str):
+    if os.path.exists(
+        os.path.join(os.getcwd(), name.lower().replace(" ", "-").strip())
+    ):
+        typer.echo(f"Project '{name}' already exists. ❌")
+        SystemExit(1)
+        sys.exit(1)
     try:
         results = form(
             packaging=question("Select a Package Manger:", PackageManager),
             python=question("Select a Python Version:", PythonVersion),
-            version=question_input("Version of the Project:",default="0.0.1"),
+            version=question_input("Version of the Project:", default="0.0.1"),
             license=question("Select a License:", License),
             database=question("Select a Database:", Database),
             database_orm=question("Select a Database ORM:", DatabaseORM),
             use_code_formatter=binary_question("use code formatter:"),
         ).ask()
-        if os.path.join(os.getcwd(), name.lower().replace(" ", "-").strip()):
-            typer.echo(f"Project '{name}' already exists. ❌")
-            SystemExit(1)
+
         packeage_version = {
             "fastapi": get_package_version("fastapi"),
             "pytest": get_package_version("pytest"),
@@ -54,6 +63,7 @@ def startproject(name: str):
             "isort": get_package_version("isort"),
             "httpx": get_package_version("httpx"),
         }
+
         results = {**results, **packeage_version}
         context = ProjectContext(name=name, **results)
         generate_project(context)
